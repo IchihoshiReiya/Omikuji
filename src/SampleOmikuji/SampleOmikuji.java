@@ -6,19 +6,35 @@ public class SampleOmikuji {
 
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
+		String inputChar;
+		int ftn;
+		String rst;
+		String msgTemple = "今日の運勢は %sです。";
+		String msg;
+		
 		System.out.println("おみくじを引きますか");
 		System.out.println("引く場合は\"y\"を入力してください。");
+		
+		try(Scanner scanner = new Scanner(System.in)){
+			inputChar = scanner.nextLine();
 
-		Scanner scanner = new Scanner(System.in);
-		String inputChar = scanner.nextLine();
+			if(!inputChar.equals("y")) {
+				return;
+			}
 
-		if(!inputChar.equals("y")) {
-			return;
+			ftn = (int) Math.round(Math.random() * 10);
+			rst = SetFortune(ftn);
+			
+			msg = String.format(msgTemple, rst);
+
+			System.out.println(msg);
 		}
 
-		int ftn = (int) Math.round(Math.random() * 10);
+	}
+	
+	private static String SetFortune(int ftn) {
 		String rst;
-
+		
 		switch(ftn) {
 		case 0:
 			rst = "大吉";
@@ -41,12 +57,8 @@ public class SampleOmikuji {
 		default:
 			rst = "小吉";
 		}
-
-		String msgTemple = "今日の運勢は %sです。";
-		String msg = String.format(msgTemple, rst);
-
-		System.out.println(msg);
-
+		
+		return rst;
 	}
 
 }
